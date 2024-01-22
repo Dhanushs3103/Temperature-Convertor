@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Convertor</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    body {
+    background-image: url("https://images.radio.com/aiu-media/GettyImages1164707606-d493b8d7-9750-42b0-ad2c-4b39e370ec53.jpg");
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    margin: 0; 
+    padding: 0; 
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    }
+      h1 {
+        font-size:50px;
+        color:goldenrod;
+      }
+
+      .main {
+        width: fit-content;
+        text-align: center;
+        width: 70%;
+        margin: auto;
+        margin-top: 100px;
+        height: 500px;
+      }
+
+      #input {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+
+      input {
+        font-size: 60px;
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        padding: 50px;
+        border-radius: 20px;
+        border: 1px  solid lightgrey;
+        background-color: rgba(234, 233, 233, 0.2);
+      }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    
+    function App () {
+       let [celsius, setCelsius] = React.useState("");
+       let [fahrenheit, setFahrenheit] = React.useState("");
+        
+    function convertCelsiusToFahrenheit(e) {
+        const value = e.target.value;
+        setCelsius(value);
+        if (value === "") {
+            setFahrenheit("");
+        } else {
+            setFahrenheit((parseInt(value) * 9 / 5) + 32);
+        }
+    }
+
+    function convertFahrenheitToCelsius(e) {
+        const value = e.target.value;
+        setFahrenheit(value);
+        if (value === "") {
+            setCelsius("");
+        } else {
+            setCelsius((parseInt(value) - 32) * 5 / 9);
+        }
+    }
+
+        return (
+           <div>
+            <div className="main">
+                <h1>Temperature Convertor ☀️</h1>
+                <div id="input">
+                    <input type="number" value={celsius}  onChange = {convertCelsiusToFahrenheit} placeholder ="Celsius" id="celsius"/>
+                    <input type="number" value={fahrenheit}  onChange = {convertFahrenheitToCelsius} placeholder ="Fahrenheit" id="fahrenheit"/>
+                </div>
+            </div>
+           </div>
+        );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
